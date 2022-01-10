@@ -6,7 +6,7 @@ class ChallengeSolver{
     String result = "";
 
     while(endNonceExclusive == null || nonce < endNonceExclusive){
-      result = challengeInfo.challengeAlgorithm.hashToHexFunc(challengeInfo.token + nonce.toString());
+      result = challengeInfo.challengeAlgorithm.hashToHexFunc(challengeInfo.token + ':' + nonce.toRadixString(16));
       if(ChallengeAlgorithm.hexStringCompliesWithComplexity(result, challengeInfo.complexity)){
         return nonce;
       }

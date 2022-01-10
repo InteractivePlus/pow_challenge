@@ -29,11 +29,11 @@ class ChallengeAlgorithm{
     }
   }
 
-  static String _sha1Hash(String toHash) => sha1.convert(utf8.encode(toHash)).toString();
-  static String _sha224Hash(String toHash) => sha224.convert(utf8.encode(toHash)).toString();
-  static String _sha256Hash(String toHash) => sha256.convert(utf8.encode(toHash)).toString();
-  static String _sha384Hash(String toHash) => sha384.convert(utf8.encode(toHash)).toString();
-  static String _sha512Hash(String toHash) => sha512.convert(utf8.encode(toHash)).toString();
+  static String _sha1Hash(String toHash) => sha1.convert(toHash.codeUnits).toString();
+  static String _sha224Hash(String toHash) => sha224.convert(toHash.codeUnits).toString();
+  static String _sha256Hash(String toHash) => sha256.convert(toHash.codeUnits).toString();
+  static String _sha384Hash(String toHash) => sha384.convert(toHash.codeUnits).toString();
+  static String _sha512Hash(String toHash) => sha512.convert(toHash.codeUnits).toString();
 
   static const List<int> _bitMaskForIndividualComplexity = [0, 8, 12, 14];
 
