@@ -1,4 +1,4 @@
-import 'package:pow_challenge/captcha_dart.dart';
+import 'challengeinfo.dart';
 
 class ChallengeGenerator{
   static ChallengeInfo generateChallenge(String secret, String additionalSalt, int complexity, [ChallengeAlgorithm algorithm = ChallengeAlgorithm.SHA256]){

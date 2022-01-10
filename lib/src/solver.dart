@@ -1,4 +1,4 @@
-import 'package:pow_challenge/captcha_dart.dart';
+import 'challengeinfo.dart';
 
 class ChallengeSolver{
   static int solveChallengenonce(ChallengeInfo challengeInfo){

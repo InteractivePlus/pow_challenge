@@ -1,5 +1,5 @@
 
-import 'package:pow_challenge/captcha_dart.dart';
+import 'package:pow_challenge/pow_challenge.dart';
 
 final String secret = 'SECRET';
 final String additionalSalt = '123';

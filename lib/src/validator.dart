@@ -1,4 +1,4 @@
-import 'package:pow_challenge/captcha_dart.dart';
+import 'challengeinfo.dart';
 
 class ChallengeValidator{
   static bool validateChallengeAnswer(int nonce, ChallengeInfo challenge){

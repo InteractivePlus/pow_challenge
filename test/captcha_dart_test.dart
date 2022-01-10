@@ -1,4 +1,4 @@
-import 'package:pow_challenge/captcha_dart.dart';
+import 'package:pow_challenge/pow_challenge.dart';
 import 'package:test/test.dart';
 
 void main() {
