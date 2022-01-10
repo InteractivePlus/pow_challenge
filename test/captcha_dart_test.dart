@@ -8,9 +8,9 @@ void main() {
     final int complexity = 5;
 
     test('Test challenge solvable', () {
-      ChallengeInfo challenge = ChallengeGenerator.generateChallenge(secret, additionalSalt, complexity);
-      int solvedNonce = ChallengeSolver.solveChallengenonce(challenge);
-      bool validatedInfo = ChallengeValidator.validateChallengeAnswer(solvedNonce, challenge);
+      ChallengeInfo challenge = ChallengeGenerator(secret: secret).generateChallenge(additionalSalt, complexity);
+      int solvedNonce = ChallengeSolver(challengeInfo: challenge).solveChallenge();
+      bool validatedInfo = ChallengeValidator(challenge: challenge).validateChallengeAnswer(solvedNonce);
       expect(validatedInfo, true);
     });
   });

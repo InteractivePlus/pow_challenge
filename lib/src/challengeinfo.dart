@@ -6,11 +6,11 @@ class ChallengeAlgorithm{
   final int maxComplexity;
   final String Function(String toHash) hashToHexFunc;
   const ChallengeAlgorithm._(this.maxComplexity, this.hashToHexFunc);
-  static const SHA1 = ChallengeAlgorithm._(40, _sha1Hash);
-  static const SHA224 = ChallengeAlgorithm._(56, _sha1Hash);
-  static const SHA256 = ChallengeAlgorithm._(64, _sha1Hash);
-  static const SHA384 = ChallengeAlgorithm._(96, _sha1Hash);
-  static const SHA512 = ChallengeAlgorithm._(128, _sha1Hash);
+  static const SHA1 = ChallengeAlgorithm._(160, _sha1Hash);
+  static const SHA224 = ChallengeAlgorithm._(224, _sha1Hash);
+  static const SHA256 = ChallengeAlgorithm._(256, _sha1Hash);
+  static const SHA384 = ChallengeAlgorithm._(384, _sha1Hash);
+  static const SHA512 = ChallengeAlgorithm._(512, _sha1Hash);
 
   @override
   String toString(){
@@ -34,6 +34,26 @@ class ChallengeAlgorithm{
   static String _sha256Hash(String toHash) => sha256.convert(utf8.encode(toHash)).toString();
   static String _sha384Hash(String toHash) => sha384.convert(utf8.encode(toHash)).toString();
   static String _sha512Hash(String toHash) => sha512.convert(utf8.encode(toHash)).toString();
+
+  static const List<int> _bitMaskForIndividualComplexity = [0, 8, 12, 14];
+
+  static bool hexStringCompliesWithComplexity(String hex, int complexity){
+    int leadingZeros = complexity ~/ 4;
+    int remainingComplexityBits = complexity % 4;
+    for(int i = 0; i < leadingZeros; i++){
+      if(hex[i] != '0'){
+        return false;
+      }
+    }
+    if(remainingComplexityBits != 0){
+      String remainingBitLetter = hex[leadingZeros];
+      int remainingBitNum = int.parse(remainingBitLetter,radix: 16);
+      if(remainingBitNum & _bitMaskForIndividualComplexity[remainingComplexityBits] != 0){
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 class ChallengeInfo{

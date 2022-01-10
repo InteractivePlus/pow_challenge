@@ -1,16 +1,14 @@
 import 'challengeinfo.dart';
 
 class ChallengeValidator{
-  static bool validateChallengeAnswer(int nonce, ChallengeInfo challenge){
-    String repeatedZero = '0';
-    for(int i=1; i<challenge.complexity; i++){
-      repeatedZero += '0';
-    }
+  final ChallengeInfo challenge;
+  bool validateChallengeAnswer(int nonce){
     String result = challenge.challengeAlgorithm.hashToHexFunc(challenge.token + nonce.toString());
-    if(result.startsWith(repeatedZero)){
+    if(ChallengeAlgorithm.hexStringCompliesWithComplexity(result, challenge.complexity)){
       return true;
     }else{
       return false;
     }
   }
+  ChallengeValidator({required this.challenge});
 }
